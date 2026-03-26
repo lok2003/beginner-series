@@ -20,4 +20,12 @@ jobs:
         run: dotnet restore 
       - name: Build
         run: dotnet build --configuration Release --no-restore
-      
+      - name: Run Application
+        run: dotnet run --no-build
+      - name: Publish Application
+        run: dotnet publish -c Release -o publish_output
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dotnet-app
+          path: .NET/sample_code/MyConsoleApp/MyConsoleApp/publish_output
