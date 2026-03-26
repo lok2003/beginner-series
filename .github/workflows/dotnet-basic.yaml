@@ -23,6 +23,15 @@ jobs:
 
       - name: Build
         run: dotnet build --configuration Release --no-restore
+      
+      - name: Run Tests
+        run: dotnet test --no-build --verbosity normal
+      
+      - name: Code Quality Analysis
+        run: dotnet format --check
+      
+      - name: Security Scan
+        run: dotnet list package --vulnerable
 
       - name: Run Application
         run: dotnet run --configuration Release
